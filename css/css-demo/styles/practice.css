@@ -12,3 +12,7 @@ section#contact-info {
 .job-details {
 	font-size: 0.8em;
 }
+
+section:hover {
+	background-color: pink;
+}
