@@ -16,3 +16,7 @@ section#contact-info {
 section:hover {
 	background-color: pink;
 }
+
+ul > li {
+	font-style: italic;
+}
