@@ -1,0 +1,12 @@
+4.2 Algorithms
+
+Release 0: Equip your new robot
+
+- When the elevator door closes
+	- Ask "What floor?"
+		- If a response is not heard
+			- Ask "What floor?" 
+		- Otherwise:
+			- Press the floor button corresponding response
+
+
