@@ -1,3 +1,53 @@
-body {
-	background-color: yellow;
+header
+{
+  background-color: yellow;
+  padding: 20px;
+  border: solid 2px;
+  
+}
+
+.column-2
+{
+  background-color: lavender;
+  width: 45%;
+  display: inline-block;
+  border: solid 2px;
+  margin-left: 10px;
+  padding-bottom: 40px;
+  
+  }
+
+.column-1
+{
+  background-color: lavender;
+  width: 45%;
+  display: inline-block;
+  border: solid 2px;
+  background: URL(https://github.com/identicons/dyoon3102.png);
+  
+}
+
+footer
+{
+  background-color: lightgray;
+  padding: 20px;
+  margin-top: 10px;
+  border: solid 2px;
+}
+
+section
+{
+  vertical-align: top;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+body
+{
+  font-family: 'Allerta', Helvetica, Arial, sans-serif;
+}
+h2
+{
+  background-color: lightgray;
+  
 }
