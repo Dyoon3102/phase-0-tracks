@@ -1,0 +1,21 @@
+4.2 Algorithms
+
+Release 0: Equip your new robot
+
+- When the elevator door closes
+	- Ask "What floor?"
+		- If a response is not heard
+			- Ask "What floor?" 
+		- Otherwise:
+			- Press the floor button corresponding response
+
+
+Release 1: Find a Real-Life Algorithm
+
+- For each kid listed in the household
+	- When time reaches 7:30am from Monday to Friday
+		- Until you hear a response, or until you have attempted three times:
+			- Call out the kid's name followed by "wake up"
+			- Wait three seconds for a response.
+		- If no response was heard:
+			- Mark the kid sick.
