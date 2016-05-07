@@ -17,7 +17,7 @@ def encrypt(password)
 	index = 0
 	while index < password.length
 		if password[index] == "z"
-			password[index] = "a"
+			password[index] = "`"
 		else
 			print password[index].next
 			index += 1
@@ -33,11 +33,18 @@ puts ""
 def decrypt(password)
 	index = 0
 	while index < password.length
-		print (password[index].ord-1).chr
-		index += 1
+		array = "abcdefghijklmnopqrstuvwxyz"
+		
+		if password[index] == "a"
+			password[index] = "{"
+		else
+			print (password[index].ord-1).chr
+			index += 1
+		end
 	end
 end
 
 decrypt("bcd")
 puts ""
 decrypt("afe")
+puts ""
