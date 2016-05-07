@@ -33,8 +33,6 @@ puts ""
 def decrypt(password)
 	index = 0
 	while index < password.length
-		array = "abcdefghijklmnopqrstuvwxyz"
-		
 		if password[index] == "a"
 			password[index] = "{"
 		else
