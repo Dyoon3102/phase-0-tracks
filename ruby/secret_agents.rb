@@ -16,8 +16,12 @@
 def encrypt(password)
 	index = 0
 	while index < password.length
-		print password[index].next
-		index += 1
+		if password[index] == "z"
+			password[index] = "a"
+		else
+			print password[index].next
+			index += 1
+		end
 	end
 end
 
