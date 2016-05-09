@@ -7,7 +7,7 @@
 "iNvEsTiGaTiOn".swapcase
 # => “InVeStIgAtIoN”
 
-"zom"..insert(1, 'o')
+"zom".insert(1, 'o')
 # => “zoom”
 
 "enhance".center(15)
