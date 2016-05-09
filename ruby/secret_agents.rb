@@ -44,6 +44,7 @@ end
 
 #password = "swordfish"
 #puts decrypt(encrypt(password))
+#Method within a method works because it processes whatever is in parenthesis first
 
 #Keep asking until a valid answer: encrypt or decrypt
 valid = false
@@ -55,7 +56,7 @@ until valid
 	end
 end
 
-# Ask the user to input a password
+#Ask the user to input a password
 puts "Key in your password."
 password = gets.chomp.downcase
 
