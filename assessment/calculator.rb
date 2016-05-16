@@ -17,10 +17,12 @@ end
 #puts calculate(33, "/", 11)
 
 loop do
-	puts "Enter your equation (e.g. 4 + 5) or type 'done' when done:"
+	puts "Enter your equation (e.g. 4 + 5) or type 'done' when finished:"
 	equation = gets.chomp
 	if equation == 'done'
 		break
+	#elsif !equation.is_a?(Integer) || !equation.include?("+", "-", "*", "/", " ")
+		#puts "Please make a valid input."
 	else
 		equation.delete!(" ")
 		num1 = equation[0].to_i
@@ -29,7 +31,9 @@ loop do
 		math = calculate(num1, operator, num2)
 		equate[math] = equation
 	end
-	to_arr = 
 	puts calculate(num1, operator, num2)
 end
-equate.each { |x, y| puts "Calculations performed: #{y} = #{x}" }
+
+index = equate.length
+puts "#{index} calculations perfomed:"
+equate.each { |x, y| puts "#{y} = #{x}" }
