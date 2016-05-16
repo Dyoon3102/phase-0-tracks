@@ -15,13 +15,16 @@ end
 #puts calculate(3, "*", 6)
 #puts calculate(33, "/", 11)
 
-puts "Enter a number:"
-num1 = gets.chomp.to_i
-
-puts "Enter an operator (+, -, *, /):"
-operator = gets.chomp.to_s
-
-puts "Enter another number:"
-num2 = gets.chomp.to_i
-
-puts calculate(num1, operator, num2)
+loop do
+	puts "Enter your equation (e.g. 4 + 5) or type 'done' when done:"
+	equation = gets.chomp
+	if equation == 'done'
+		break
+	else
+		equation.delete!(" ")
+		num1 = equation[0].to_i
+		operator = equation[1].to_s
+		num2 = equation[2].to_i
+	end
+	puts calculate(num1, operator, num2)
+end
