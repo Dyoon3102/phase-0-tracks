@@ -1,12 +1,13 @@
-def calculate(x, op, y)
-	if op == "+"
-		x + y
-	elsif op == "-"
-		x - y
-	elsif op == "*"
-		x * y
-	elsif op == "/"
-		x / y
+equate = {}
+def calculate(num1, operator, num2)
+	if operator == "+"
+		num1 + num2
+	elsif operator == "-"
+		num1 - num2
+	elsif operator == "*"
+		num1 * num2
+	elsif operator == "/"
+		num1 / num2
 	end
 end
 
@@ -25,6 +26,10 @@ loop do
 		num1 = equation[0].to_i
 		operator = equation[1].to_s
 		num2 = equation[2].to_i
+		math = calculate(num1, operator, num2)
+		equate[math] = equation
 	end
+	to_arr = 
 	puts calculate(num1, operator, num2)
 end
+equate.each { |x, y| puts "Calculations performed: #{y} = #{x}" }
