@@ -1,30 +1,3 @@
-=begin
-	
-PAUL "MAC" ROCHE
-ASSIGNMENT 6.1 - INTRO TO CLASSES
-
-SPECIES ------------------------
-Canus Lupus ssp. Puppitus
-
-CHARACTERISTICS ----------------
-Chews everything: yes
-Friendly: varies
-Good boy: yes
-Eye count: 2
-Paw count: 4
-House trained: varies
-Name: varies
-Color: varies
-Fuzz: yes
-
-BEHAVIOR -----------------------
-Jump
-Snuggle
-Chew 
-Nap
-
-=end
-
 class Puppy
 
   def fetch(toy)
@@ -62,3 +35,39 @@ rottweiler.speak(3)
 rottweiler.roll_over
 rottweiler.dog_years(42)
 rottweiler.juggle(5)
+
+
+		
+
+class Lunch
+
+	def initialize
+		puts "Initializing lunch instance..."
+	end
+
+	def order(obj)
+		puts "I'll have #{obj} today."
+	end
+
+	def eat(obj)
+		puts "This #{obj} is delicious!"
+	end
+
+end
+
+#food = Lunch.new
+#food.order("salad")
+#food.eat("salad")
+
+lunch_arr = []
+	index = 0
+	while index < 50
+		lunch_arr << Lunch.new
+		index += 1
+	end
+#p lunch_arr
+
+lunch_arr.each do |l|
+	l.order("salad")
+	l.eat("salad")
+end
