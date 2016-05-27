@@ -22,3 +22,23 @@ function longPhrase(newArray) {
 longPhrase(fruits);
 longPhrase(veggie);
 longPhrase(carBrand);
+
+// Release 1
+
+// Create function that takes two objects and checks to see if the objects share at least one key-value pair
+// Take two key-value pair objects as arguments
+// Create a conditional statement that returns true if at least one key-value pair match
+// If no key-value pair match, returns false
+function matchMaker(objOne, objTwo) {
+	outcome= '';
+	if (objOne.name == objTwo.name || objOne.age == objTwo.age) {
+	outcome = true;
+	}else{
+	outcome = false;
+	}
+	console.log(outcome);
+}
+
+matchMaker({name: "Robert", age: 24}, {name: "Jayce", age :24});
+matchMaker({name: "Eghert", age: 32}, {name: "Eghert", age :5});
+matchMaker({name: "Maggie", age: 18}, {name: "Ryder", age: 78});
