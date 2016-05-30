@@ -30,7 +30,7 @@ longPhrase(carBrand);
 // Create a conditional statement that returns true if at least one key-value pair match
 // If no key-value pair match, returns false
 function matchMaker(objOne, objTwo) {
-	outcome= '';
+	outcome = '';
 	if (objOne.name == objTwo.name || objOne.age == objTwo.age) {
 	outcome = true;
 	}else{
