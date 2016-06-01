@@ -1,0 +1,81 @@
+-Release 2-
+
+1. Display the information in one table (either table is fine).
+
+sqlite> SELECT * FROM cars;
+1|Chevy|Malibu|2005|false|1
+2|Acura|MDX|2010|true|3
+3|Porsche|911|2003|true|2
+4|Toyota|Rav-4|2015|false|3
+
+2. Update an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> UPDATE cars SET year=2013, moon_roof="true" WHERE id=4;
+sqlite> SELECT * FROM cars;
+1|Chevy|Malibu|2005|false|1
+2|Acura|MDX|2010|true|3
+3|Porsche|911|2003|true|2
+4|Toyota|Rav-4|2013|true|3
+
+3. Display the information in both tables using one query.
+
+sqlite> SELECT * FROM cars, types WHERE cars.types_id = types.id;    
+1|Chevy|Malibu|2005|false|1|1|sedan
+2|Acura|MDX|2010|true|3|3|sport utility
+3|Porsche|911|2003|true|2|2|coupe
+4|Toyota|Rav-4|2013|true|3|3|sport utility
+
+4. Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+sqlite> SELECT cars.make, cars.model, types.name FROM cars JOIN types ON cars.types_id = types.id;
+Chevy|Malibu|sedan
+Acura|MDX|sport utility
+Porsche|911|coupe
+Toyota|Rav-4|sport utility
+
+5. Delete an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> SELECT * FROM cars;
+1|Chevy|Malibu|2005|false|1
+2|Acura|MDX|2010|true|3
+4|Toyota|Rav-4|2013|true|3
+
+——————————————————————
+
+-Release 3-
+
+1. There are lots of different kinds of joins. What are they? Can you apply different conditions to a join to change what's displayed? Can you bookmark any good diagrams that will help you tell different joins apart in the future?
+
+Different kinds of joins: Inner, Left, Right, Full Outer.
+Yes, there are conditional joins by attaching command of “WHERE”
+
+2. Try a few different joins in your database, and record the commands and the output in queries.txt.
+
+sqlite> SELECT * FROM cars;
+1|Chevy|Malibu|2005|false|1
+2|Acura|MDX|2010|true|3
+3|Ferrari|Enzo|2003|true|2
+4|Toyota|Rav-4|2013|true|3
+5|Porsche|911|2003|false|2
+
+sqlite> SELECT * FROM types;
+1|sedan
+2|coupe
+3|sport utility
+
+sqlite> SELECT cars.model, cars.make, types.name FROM cars JOIN types ON cars.types_id = types.id WHERE types.id = 3;
+MDX|Acura|sport utility
+Rav-4|Toyota|sport utility
+
+sqlite> SELECT cars.make, cars.model, types.name FROM cars INNER JOIN types ON cars.types_id = types.id;
+Chevy|Malibu|sedan
+Acura|MDX|sport utility
+Ferrari|Enzo|coupe
+Toyota|Rav-4|sport utility
+Porsche|911|coupe
+
+sqlite> SELECT cars.make, cars.model, types.name FROM cars LEFT JOIN types ON cars.types_id = types.id WHERE cars.id=2;
+Acura|MDX|sport utility
+
+***Getting the following error on RIGHT and FULL JOINs***
+Error: RIGHT and FULL OUTER JOINs are not currently supported
