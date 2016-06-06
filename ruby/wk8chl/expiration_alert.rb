@@ -7,7 +7,7 @@ require 'sqlite3'
 db = SQLite3::Database.new("alert.db")
 db.results_as_hash = true
 
-# Use string delimiters to create table
+# Use string delimiter to create products table
 create_products_table = <<-SQL
 	CREATE TABLE IF NOT EXISTS products (
 		id INTEGER PRIMARY KEY,
@@ -35,10 +35,11 @@ db.execute(create_products_table)
 # Add available types of products
 # db.execute("INSERT INTO types (name) VALUES ('vegetable'), ('fruit'), ('meat'), ('dairy'), ('medicine'), ('other')")
 
-# product = db.execute("SELECT * FROM types")
+# product = db.execute("SELECT * FROM products")
 # puts product.class
 # p product
 
+# Create user input 
 loop do
 	puts "Would you like to add a product? (type yes or no)"
 	answer = gets.chomp
@@ -47,14 +48,22 @@ loop do
 	end
 	puts "Which product would you like to add?"
 	product = gets.chomp
-	puts "What is the purchase date? use YYYYMMDD format e.g. 2016, 9, 13"
+	puts "What is the purchase date? Use YYYY,MM,DD format e.g. 2015, 11, 7"
 	purch_date = gets.chomp
-	puts "What is the expiration date? Use YYYYMMDD format e.g. 2016, 5, 29"
+	puts "What is the expiration date? Use YYYY,MM,DD format e.g. 2016, 5, 29"
 	exp_date = gets.chomp
 	puts "What type of product is it? (1 for vegetable, 2 for fruit, 3 for meat, 4 for dairy, 5 medicine, 6 for other)"
 	prod_type = gets.chomp.to_i
-	db.execute("INSERT INTO products (name, purchase_date, expiration_date, type_id) VALUES (#{product}, #{purch_date}, #{exp_date}, #{prod_type})")
+	db.execute("INSERT INTO products (name, purchase_date, expiration_date, type_id) VALUES (?, ?, ?, ?)",[product, purch_date, exp_date, prod_type])
 end
+
+ #((Time.now - Time.new(2016, 6, 1)).to_i) / 86400
+
+# Explore ORM by retrieving data
+# products = db.execute("SELECT * FROM products")
+# products.each do |product|
+# 	puts "#{product['name'].capitalize} was purchased on #{product['purchase_date']} and expires on #{product['expiration_date']}"
+# end
 
 
 
