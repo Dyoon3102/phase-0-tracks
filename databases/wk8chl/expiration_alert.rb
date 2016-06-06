@@ -54,7 +54,7 @@ loop do
 
 	valid = false
 	until valid
-		puts "What is the purchase date? Use YYYY-MM-DD format e.g. 2015-11-7"
+		puts "What is the purchase date? (Use YYYY-MM-DD format e.g. 2015-11-7)"
 		purch_date = gets.chomp
 		if purch_date == ""
 			valid = false
@@ -65,7 +65,7 @@ loop do
 
 	valid = false
 	until valid
-		puts "What is the expiration date? Use YYYY-MM-DD format e.g. 2016-5-29"
+		puts "What is the expiration date? (Use YYYY-MM-DD format e.g. 2016-5-29)"
 		exp_date = gets.chomp
 		if exp_date == ""
 			valid = false
