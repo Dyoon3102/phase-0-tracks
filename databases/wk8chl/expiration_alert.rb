@@ -42,9 +42,12 @@ db.execute(create_products_table)
 
 # Create user input 
 loop do
-	puts "Would you like to add a product? (type yes or no)"
+	puts "Would you like to add a product? (type yes or no or clear to clear list)"
 	answer = gets.chomp
 	if answer == "no"
+		break
+	elsif answer == "clear"
+		db.execute("DROP TABLE products")
 		break
 	end
 
@@ -56,7 +59,7 @@ loop do
 
 	puts "What is the expiration date? Use YYYY,MM,DD format e.g. 2016, 5, 29"
 	exp_date = gets.chomp
-	days_left = ((Time.now - Time.new(exp_date)).to_i) / 86400
+	days_left = ((Time.new(exp_date) - Time.now).to_i) / 86400
 		
 	puts "What type of product is it? (1 for vegetable, 2 for fruit, 3 for meat, 4 for dairy, 5 medicine, 6 for other)"
 	prod_type = gets.chomp.to_i
@@ -66,7 +69,16 @@ end
 
 # Calculate the days left before expiration and print an alert message
 
-
+products = db.execute("SELECT * FROM products")
+products.each do |product|
+	if product['days_left'] > 5
+		puts "The #{product['name']} that was purchased on #{product['purchase_date']} have #{product['days_left']} days before expiration."
+	elsif product['days_left'] > 0
+		puts "WARNING: The #{product['name']} that was purchased on #{product['purchase_date']} have #{product['days_left']} days before expiration."
+	else product['days_left'] >= -1
+		puts "PRODUCT EXPIRED, do not use the product please dispose of it."
+	end
+end
 
 
 # Explore ORM by retrieving data
