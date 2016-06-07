@@ -9,9 +9,9 @@ firstPara.style.width = "300px";
 
 function changeColor(event) {
   redVal = document.getElementById("redVal").value;
-  blueVal = document.getElementById("blueVal").value;
   greenVal = document.getElementById("greenVal").value;
-  firstPara.style.backgroundColor = "rgb(" + redVal + ", " + blueVal + ", " + greenVal + ")"
+  blueVal = document.getElementById("blueVal").value;
+  firstPara.style.backgroundColor = "rgb(" + redVal + ", " + greenVal + ", " + blueVal + ")"
 }
 
 var colorButton = document.getElementById("changeColor");
