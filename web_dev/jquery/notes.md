@@ -26,3 +26,4 @@ Which strategies seemed to be the most effective?
 - Last, was to go to jquery.com on API documentations and go through most so I could get a basic idea of the structure. Tested on codes that didn't make sense until I clearly understood.
 
 ** I extended my 2 hours to 10 more minutes for jquery installation on my system.
+** I also later on saw that w3schools.com had some pretty good examples and descriptions.
