@@ -13,3 +13,9 @@ $(function() {
 		$(".1stP").toggle();
 	});
 });
+
+$(function() {
+	$(".2ndP").mouseenter(function() {
+		alert("Welcome to my paragraph");
+	})
+})
