@@ -68,3 +68,10 @@ get '/:first_num/plus/:second_num' do
   result = params[:first_num].to_i + params[:second_num].to_i
   "#{result}"
 end
+
+# OPTIONAL BONUS: write a GET route that allows user
+# to search the database with a keyword
+get '/campus/:campus' do
+  student = db.execute("SELECT * FROM students WHERE campus=?", [params[:campus]])
+  student.to_s
+end
