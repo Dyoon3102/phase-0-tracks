@@ -51,3 +51,13 @@ get '/contact' do
   "2606 Mill Street, Woodbridge, VA 22191"
 end
 
+# write a GET route that takes a person's name as a parameter
+# and displays a message
+get '/great_job' do
+  name = params[:name]
+  if name
+    "Good job, #{name}!"
+  else
+    "Good job!"
+  end
+end
