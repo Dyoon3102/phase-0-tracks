@@ -17,11 +17,20 @@ get '/students/new' do
   erb :new_student
 end
 
+get '/students/update_campus' do
+	erb :update_campus
+end
+
 # create new students via
 # a form
-post '/students' do
+post '/student_new' do
   db.execute("INSERT INTO students (name, campus, age) VALUES (?,?,?)", [params['name'], params['campus'], params['age'].to_i])
   redirect '/'
+end
+
+post '/campus_update' do
+	db.execute("UPDATE students SET campus=? WHERE name=?", [params['campus'], params['name']])
+	redirect '/'
 end
 
 # add static resources
