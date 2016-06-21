@@ -1,5 +1,5 @@
 # EXPIRATION ALERT
-# This program is designed to give alerts when a purchased product nears its expiration date
+# This program is designed to give alerts on days left before a product's expiration
 
 # Require gems
 require 'sqlite3'
@@ -14,9 +14,7 @@ create_products_table = <<-SQL
 	CREATE TABLE IF NOT EXISTS products (
 		id INTEGER PRIMARY KEY,
 		name VARCHAR(255),
-		purchase_date VARCHAR(255),
 		expiration_date VARCHAR(255),
-		days_left INT,
 		type_id INT,
 		FOREIGN KEY (type_id) REFERENCES types(id)
 		)
@@ -26,8 +24,8 @@ SQL
 db.execute(create_products_table)
 
 # Define method to insert user input into the table
-def insert_into_table(db, product, purch_date, exp_date, days_left, prod_type)
-	db.execute("INSERT INTO products (name, purchase_date, expiration_date, days_left, type_id) VALUES (?, ?, ?, ?, ?)",[product, purch_date, exp_date, days_left, prod_type])
+def insert_into_table(db, product, exp_date, prod_type)
+	db.execute("INSERT INTO products (name, expiration_date, type_id) VALUES (?, ?, ?)",[product, exp_date, prod_type])
 end
 
 # Create user input 
@@ -54,17 +52,6 @@ loop do
 
 	valid = false
 	until valid
-		puts "What is the purchase date? (Use YYYY-MM-DD format e.g. 2015-11-7)"
-		purch_date = gets.chomp
-		if purch_date == ""
-			valid = false
-			puts "Please make a valid input."
-		else valid = true
-		end
-	end
-
-	valid = false
-	until valid
 		puts "What is the expiration date? (Use YYYY-MM-DD format e.g. 2016-5-29)"
 		exp_date = gets.chomp
 		if exp_date == ""
@@ -72,23 +59,25 @@ loop do
 			puts "Please make a valid input."
 		else valid = true
 		end
-		days_left = ((Time.parse(exp_date) - Time.now).to_i) / 86400
 	end
 		
 	puts "What type of product is it? (1 for vegetable, 2 for fruit, 3 for meat, 4 for dairy, 5 medicine, 6 for other)"
 	prod_type = gets.chomp.to_i
-
-	insert_into_table(db, product, purch_date, exp_date, days_left, prod_type)
+	insert_into_table(db, product, exp_date, prod_type)
 end
 
 # Display alert message
 products = db.execute("SELECT * FROM products")
 products.each do |product|
-	if product['days_left'] > 5
-		puts "The #{product['name']} purchased on #{product['purchase_date']} have #{product['days_left']} days before expiration."
-	elsif product['days_left'] >= 0
-		puts "WARNING: The #{product['name']} purchased on #{product['purchase_date']} only have #{product['days_left']} days before expiration."
-	elsif
-		puts "PRODUCT EXPIRED, do not use #{product['name']} purchased on #{product['purchase_date']} and please dispose of it."
+	days_left = (Time.parse(product['expiration_date']) - Time.now).to_i / 86400
+	type = db.execute("SELECT types.name FROM types WHERE types.id=?", [product['type_id']])
+	# p type['name']
+	if days_left > 5
+		puts "\nID: #{product['id']}\nProduct: #{product['name'].capitalize}\nType: #{type}\nExpiration date: #{product['expiration_date']}\n#{days_left} days left to expire.\n"
+	elsif days_left >= 0
+		puts "\nID: #{product['id']}\nProduct: #{product['name'].capitalize}\nType: #{type}\nExpiration date: #{product['expiration_date']}\nWARNING! This product expires in #{days_left} day(s).\n"
+	else
+		puts "\nID: #{product['id']}\nProduct: #{product['name'].capitalize}\nType: #{type}\nExpiration date: #{product['expiration_date']}\nPRODUCT EXPIRED! Removing from list.\nMake sure this product is disposed.\n"
+		db.execute("DELETE FROM products WHERE id=?", [product['id']])
 	end
 end
